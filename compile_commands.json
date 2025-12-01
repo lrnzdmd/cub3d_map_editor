@@ -1,0 +1,47 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-g3",
+      "-Iincludes",
+      "-Isfmlgui",
+      "-c",
+      "-o",
+      "main.o",
+      "main.cpp"
+    ],
+    "directory": "/home/lorenzo/repos/editor_cub3d",
+    "file": "/home/lorenzo/repos/editor_cub3d/main.cpp",
+    "output": "/home/lorenzo/repos/editor_cub3d/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-g3",
+      "-Iincludes",
+      "-Isfmlgui",
+      "-c",
+      "-o",
+      "sfmlgui/gui.o",
+      "sfmlgui/gui.cpp"
+    ],
+    "directory": "/home/lorenzo/repos/editor_cub3d",
+    "file": "/home/lorenzo/repos/editor_cub3d/sfmlgui/gui.cpp",
+    "output": "/home/lorenzo/repos/editor_cub3d/sfmlgui/gui.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-g3",
+      "-Iincludes",
+      "-Isfmlgui",
+      "-c",
+      "-o",
+      "sfmlgui/sf_widget.o",
+      "sfmlgui/sf_widget.cpp"
+    ],
+    "directory": "/home/lorenzo/repos/editor_cub3d",
+    "file": "/home/lorenzo/repos/editor_cub3d/sfmlgui/sf_widget.cpp",
+    "output": "/home/lorenzo/repos/editor_cub3d/sfmlgui/sf_widget.o"
+  }
+]
