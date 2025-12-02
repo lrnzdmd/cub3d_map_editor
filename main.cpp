@@ -15,6 +15,62 @@
 
 enum map_ch { WALL, SPACE, FLOOR, DOOR, ENEMY, BOSS, START };
 
+bool is_valid_char(char c) {
+    return std::string("012ZBSNSEW ").find(c) != std::string::npos;
+}
+
+bool is_player_start(char c) {
+    return std::string("NSEW").find(c) != std::string::npos;
+}
+
+bool check_open_borders(const std::vector<std::vector<char>>& map, int x, int y, int w, int h) 
+{
+    char c = map[y][x];
+    if (c == '1' || c == ' ') 
+        return true;
+    if (x == 0 || x == w - 1 || y == 0 || y == h - 1) 
+        return false;
+    bool touches_space = (
+        map[y][x - 1] == ' ' ||
+        map[y][x + 1] == ' ' ||
+        map[y - 1][x] == ' ' ||
+        map[y + 1][x] == ' '
+    );
+    return !touches_space;
+}
+
+bool ValidateMap(const MapData& map_data) {
+    int player_count = 0;
+    int h = map_data.map.size();
+    if (h == 0) return false;
+    int w = map_data.map[0].size();
+
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            char c = map_data.map[y][x];
+
+            if (!is_valid_char(c)) {
+                std::cerr << "Errore: invalid char '" << c << "' at (" << x << "," << y << ")\n";
+                return false;
+            }
+            if (is_player_start(c)) {
+                player_count++;
+            }
+            if (!check_open_borders(map_data.map, x, y, w, h)) {
+                std::cerr << "Error: Map open at (" << x << "," << y << ")\n";
+                return false;
+            }
+        }
+    }
+
+    if (player_count != 1) {
+        std::cerr << "Error: Place only one player, placed " << player_count << ")\n";
+        return false;
+    }
+
+    return true;
+}
+
 char get_map_char(int ch){
     switch (ch) {
         case WALL: return '1';
@@ -29,6 +85,11 @@ char get_map_char(int ch){
 }
 
 void export_map(MapData& map) {
+	std::cout << "Validating map.\n";
+    if (!ValidateMap(map)) {
+        std::cerr << "EXPORT FAILED: Invalid Map.\n";
+        return;
+    }
     std::ofstream file(map.filename);
     if (!file.is_open()) {
         std::cerr << "Error: cannot create the file\n";
