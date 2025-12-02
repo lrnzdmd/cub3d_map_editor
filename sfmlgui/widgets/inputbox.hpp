@@ -3,6 +3,7 @@
 
 #include "../sf_widget.h"
 #include "../gui.hpp"
+#include <SFML/OpenGL.hpp>
 #include "../sfgui-utils.hpp"
 #include <algorithm>
 
@@ -12,7 +13,7 @@ class InputBox : public SFWIDGET
     public:
         InputBox(std::string* input, std::string label) : SFWIDGET("Button"), b_text(TEXT_FONT, "", CHARACTER_SIZE), label(TEXT_FONT, "", CHARACTER_SIZE)
         {
-            b_size = DEFAULT_BUTTON_SIZE;
+            b_size = {200, 20};
 
             input_str = input;
             

@@ -16,14 +16,14 @@ inline constexpr uint16_t DEFAULT_GUI_SIZE_X = 400;
 inline constexpr uint16_t DEFAULT_GUI_SIZE_Y = 300;
 inline constexpr sf::Vector2f MINIMUM_GUI_SIZE = sf::Vector2f(50, 50);
 inline constexpr int DEFAULT_BAR_HEIGHT = 24;
-inline constexpr sf::Vector2f DEFAULT_GUI_POSITION = sf::Vector2f(100, 300);
+inline constexpr sf::Vector2f DEFAULT_GUI_POSITION = sf::Vector2f(0, 50);
 inline constexpr sf::Color GUI_BACKGROUND_COLOR = sf::Color(46, 52, 64, 150);
 inline constexpr sf::Color GUI_PRIMARY_COLOR = sf::Color(76, 86, 106);
 inline constexpr sf::Color GUI_TEXT_COLOR = sf::Color::White;
 inline constexpr sf::Vector2f DEFAULT_BUTTON_SIZE = sf::Vector2f(100, 20);
 inline constexpr sf::Vector2f DEFAULT_LIST_SIZE =
     sf::Vector2f(200, DEFAULT_BUTTON_SIZE.y);
-inline constexpr uint8_t CHARACTER_SIZE = 15;
+inline constexpr uint8_t CHARACTER_SIZE = 12;
 inline constexpr uint8_t WIDGET_PADDING_HOR = 10;
 inline constexpr uint8_t WIDGET_PADDING_VER = 5;
 inline constexpr uint8_t BORDER_THICKNESS = 1;
@@ -78,6 +78,7 @@ public:
   void Close();
   // Opens the GUI after being closed.
   void Open();
+  sf::Vector2f pos;
 
   // Set the title of the GUI Window
   void setWindowTitle(const std::string &text);
@@ -119,7 +120,6 @@ private:
 
   sf::Cursor::Type cursorToUse = sf::Cursor::Type::Arrow;
 
-  sf::Vector2f pos;
 };
 
 } // namespace SFGUI

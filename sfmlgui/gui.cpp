@@ -56,37 +56,10 @@ SFGUI::SFMLGUI::SFMLGUI(sf::RenderWindow &window, std::string window_title)
       sf::Vector2f(BAR.getPosition().x + WIDGET_PADDING_HOR,
                    BAR.getPosition().y + BAR.getSize().y / 2.f));
 
-  CLOSE_BUTTON.setSize(
-      sf::Vector2f(DEFAULT_BAR_HEIGHT / 2, DEFAULT_BAR_HEIGHT / 2));
-  CLOSE_BUTTON.setOrigin(sf::Vector2f(CLOSE_BUTTON.getSize().x / 2.f,
-                                      CLOSE_BUTTON.getSize().y / 2.f));
-  CLOSE_BUTTON.setTexture(&CLOSE_TEXTURE);
-  CLOSE_BUTTON_BG.setSize(sf::Vector2f(DEFAULT_BAR_HEIGHT, DEFAULT_BAR_HEIGHT));
-  CLOSE_BUTTON_BG.setPosition(sf::Vector2f(
-      BAR.getPosition().x + BAR.getSize().x - CLOSE_BUTTON_BG.getSize().x,
-      BAR.getPosition().y));
-  CLOSE_BUTTON_BG.setFillColor(sf::Color::Transparent);
-  CLOSE_BUTTON.setPosition(CLOSE_BUTTON_BG.getPosition() +
-                           sf::Vector2f(CLOSE_BUTTON_BG.getSize().x / 2,
-                                        CLOSE_BUTTON_BG.getSize().y / 2));
-
   if (!hidden)
     HIDE_BUTTON.setRotation(sf::degrees(180));
 
-  // Resize area
-  if (!RESIZE_TEXTURE.loadFromFile("sfml-gui-assets/resize_tex.png"))
-    std::cout << "Failed to load RESIZE_TEXTURE" << std::endl;
-  RESIZE_RECT.setSize(sf::Vector2f(RESIZE_RECT_SIZE, RESIZE_RECT_SIZE));
-  RESIZE_RECT.setTexture(&RESIZE_TEXTURE);
-  RESIZE_RECT.setPosition(
-      sf::Vector2f(BG.getPosition().x + BG.getSize().x - RESIZE_RECT_SIZE,
-                   BG.getPosition().y + BG.getSize().y - RESIZE_RECT_SIZE));
-  RESIZE_AREA.setSize(sf::Vector2f(RESIZE_BOUNDS_SIZE, RESIZE_BOUNDS_SIZE));
-  RESIZE_AREA.setOrigin(sf::Vector2f(RESIZE_AREA.getSize().x / 2.f,
-                                     RESIZE_AREA.getSize().y / 2.f));
-  RESIZE_AREA.setPosition(sf::Vector2f(BG.getPosition().x + BG.getSize().x,
-                                       BG.getPosition().y + BG.getSize().y));
-
+ 
   this->setWindowTitle(WIN_TITLE);
   this->Update();
 }
@@ -130,7 +103,6 @@ void SFGUI::SFMLGUI::Draw() {
                 guiPrevScissor[3]);
       glDisable(GL_SCISSOR_TEST);
       //                                                                                  //
-      SF_WINDOW->draw(RESIZE_RECT);
     }
     SF_WINDOW->draw(BAR);
     {
@@ -145,8 +117,6 @@ void SFGUI::SFMLGUI::Draw() {
       SF_WINDOW->draw(WIN_TEXT);
       glDisable(GL_SCISSOR_TEST);
     }
-    SF_WINDOW->draw(CLOSE_BUTTON_BG);
-    SF_WINDOW->draw(CLOSE_BUTTON);
     SF_WINDOW->draw(HIDE_BUTTON_BG);
     SF_WINDOW->draw(HIDE_BUTTON);
   }
@@ -241,7 +211,8 @@ void SFGUI::SFMLGUI::Update() {
           for (int i = 0; i < SF_WIDGETS.size(); i++) {
             float xPos = 0, yPos = 0;
             // First Widget
-            if (SF_WIDGETS[i]->w_index == 0) {
+            // CORRETTO: Uso 'i == 0' invece di w_index
+            if (i == 0) {
               xPos = WIDGET_PADDING_HOR + pos.x;
               yPos = WIDGET_PADDING_VER + pos.y;
             } else { // All other widgets
@@ -342,7 +313,8 @@ void SFGUI::SFMLGUI::Setup() {
   for (int i = 0; i < SF_WIDGETS.size(); i++) {
     float xPos = 0, yPos = 0;
     // First Widget
-    if (SF_WIDGETS[i]->w_index == 0) {
+    // CORRETTO: Uso 'i == 0' invece di w_index
+    if (i == 0) {
       xPos = WIDGET_PADDING_HOR + pos.x;
       yPos = WIDGET_PADDING_VER + pos.y;
     } else { // All other widgets

@@ -6,14 +6,14 @@
 #    By: lde-medi <lde-medio@student.42madrid.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/09 20:22:59 by lde-medi          #+#    #+#              #
-#    Updated: 2025/11/29 04:46:52 by lde-medi         ###   ########.fr        #
+#    Updated: 2025/12/02 03:16:31 by lde-medi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = editor_cub3d
 CC = c++
 CFLAGS = -g3 -Iincludes -Isfmlgui
-SRCS = main.cpp $(GUI_SRCS)
+SRCS = main.cpp $(GUI_SRCS) srcs/MapData.cpp
 GUI_SRCS = $(wildcard sfmlgui/*.cpp)
 OBJS = $(SRCS:.cpp=.o)
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lGL
