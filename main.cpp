@@ -179,7 +179,7 @@ void HandleMapPainting(sf::RenderWindow& window, SFGUI::SFMLGUI& gui, EditorCont
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
         
         bool is_over_gui = (mousePos.x >= gui.pos.x - 50 && mousePos.x < gui.pos.x + 450 &&
-                            mousePos.y >= gui.pos.y - 50 && mousePos.y < gui.pos.y + 350);
+                            mousePos.y >= gui.pos.y - 50 && mousePos.y < gui.pos.y + 450);
         
         bool is_inside_window = (mousePos.x >= 0 && mousePos.y >= 0 && 
                                  static_cast<unsigned>(mousePos.x) < window.getSize().x && 
